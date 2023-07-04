@@ -58,6 +58,26 @@ namespace PilkGame.Managers
 
             base.Draw(gameTime);
         }
-  
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            mCurrentScene.Close();
+            base.OnExiting(sender, args);
+        }
+
+        public void ChangeScene(SceneTypes pSceneType)
+        {
+            mCurrentScene.Close();
+            switch (pSceneType)
+            {
+                case SceneTypes.MainMenu:
+                    mCurrentScene = new MainMenuScene(this);
+                    break;
+                default:
+                    mCurrentScene = new MainMenuScene(this);
+                    break;
+            }
+            mCurrentScene.Initialize();
+        }
     }
 }

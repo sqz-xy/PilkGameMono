@@ -11,7 +11,7 @@ using System;
 /// </summary>
 public enum SceneTypes
 {
-    SceneMainMenu,
+    MainMenu
 }
 
 /// <summary>
@@ -35,6 +35,12 @@ public interface IScene
     /// </summary>
     /// <param name="pFrameEventArgs"></param>
     void Update(GameTime pGameTime);
+
+    /// <summary>
+    /// Change to a different scene
+    /// </summary>
+    /// <param name="pSceneType">Type of scene to change to</param>
+    void ChangeScene(SceneTypes pSceneType);
     
     /// <summary>
     /// Cleanup logic for the scene goes here

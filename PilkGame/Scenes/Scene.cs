@@ -12,12 +12,16 @@ public abstract class Scene : IScene
     protected Scene(SceneManager pSceneManager)
     {
         mSceneManager = pSceneManager;
-        pSceneManager.mUpdater = this.Update;
-        pSceneManager.mRenderer = this.Render;
+        pSceneManager.mUpdater = Update;
+        pSceneManager.mRenderer = Render;
     }
 
     public abstract void Initialize();
     public abstract void Render(GameTime pGameTime, SpriteBatch pSpriteBatch);
     public abstract void Update(GameTime pGameTime);
     public abstract void Close();
+    public void ChangeScene(SceneTypes pSceneType)
+    {
+        mSceneManager.ChangeScene(pSceneType);
+    }
 }

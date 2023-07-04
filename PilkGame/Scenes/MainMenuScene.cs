@@ -5,6 +5,7 @@ using PilkGame.Managers;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,27 +16,27 @@ namespace PilkGame.Scenes
     {
         public MainMenuScene(SceneManager pSceneManager) : base(pSceneManager) 
         { 
-            
+        
         }
 
         public override void Close()
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("Close");
         }
 
         public override void Initialize()
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("Initialize");
         }
 
         public override void Render(GameTime pGameTime, SpriteBatch pSpriteBatch)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("Render");
         }
 
         public override void Update(GameTime pGameTime)
         {
-            throw new NotImplementedException();
+            Debug.WriteLine("Update");
         }
     }
 }
