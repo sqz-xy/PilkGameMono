@@ -1,3 +1,3 @@
 ﻿
-using var game = new PilkGame.Game1();
+using var game = new PilkGame.Managers.SceneManager();
 game.Run();
