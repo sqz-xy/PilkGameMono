@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PilkEngineMono.Entity
+namespace PilkEngineMono.EntityComponent
 {
-    public class ComponentPosition : IComponent
+    public abstract class ComponentPosition : IComponent
     {
 
     }
