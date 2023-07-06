@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using PilkGame.Scenes;
+using PilkEngineMono.Scenes;
 
 using System;
 
-namespace PilkGame.Managers
+namespace PilkEngineMono.Managers
 {
     public class SceneManager : Game
     {

@@ -1,4 +1,4 @@
-﻿namespace PilkGame.Scenes;
+﻿namespace PilkEngineMono.Scenes;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

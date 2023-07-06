@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using PilkGame.Managers;
+using PilkEngineMono.Managers;
 
-namespace PilkGame.Scenes;
+namespace PilkEngineMono.Scenes;
 
 public abstract class Scene : IScene
 {

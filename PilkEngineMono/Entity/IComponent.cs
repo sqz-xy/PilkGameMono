@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PilkGame.Entity
+namespace PilkEngineMono.Entity
 {
-    public class ComponentPosition : IComponent
+    public interface IComponent
     {
 
     }

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using PilkGame.Managers;
+using PilkEngineMono.Scenes;
+using PilkEngineMono.Managers;
 
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PilkGame.Scenes
+namespace PilkEngineMono.Scenes
 {
     public class MainMenuScene : Scene
     {
