@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.Systems
 {
-    internal interface ISystem
+    public interface ISystem
     {
+        // TODO
     }
 }

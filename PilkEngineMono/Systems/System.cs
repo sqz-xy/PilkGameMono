@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.Systems
 {
-    internal class System
+    public class System
     {
+        // TODO
     }
 }
