@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.EntityComponent
 {
-    public abstract class ComponentPosition : IComponent
+    public class ComponentSprite
     {
 
     }
