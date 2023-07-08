@@ -6,13 +6,6 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 
-/// <summary>
-/// The types of scene, used for changing scene
-/// </summary>
-public enum SceneTypes
-{
-    MainMenu
-}
 
 /// <summary>
 /// Interface for implementing a new scene
@@ -38,7 +31,7 @@ public interface IScene
     /// Change to a different scene
     /// </summary>
     /// <param name="pSceneType">Type of scene to change to</param>
-    void ChangeScene(SceneTypes pSceneType);
+    void ChangeScene(Type pSceneType);
     
     /// <summary>
     /// Cleanup logic for the scene goes here

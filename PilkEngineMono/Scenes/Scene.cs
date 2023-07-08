@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 using PilkEngineMono.Managers;
 
+using System;
+
 namespace PilkEngineMono.Scenes;
 
 public abstract class Scene : IScene
@@ -20,7 +22,7 @@ public abstract class Scene : IScene
     public abstract void Render();
     public abstract void Update();
     public abstract void Close();
-    public void ChangeScene(SceneTypes pSceneType)
+    public void ChangeScene(Type pSceneType)
     {
         mSceneManager.ChangeScene(pSceneType);
     }

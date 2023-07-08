@@ -5,37 +5,46 @@ using Microsoft.Xna.Framework.Input;
 using PilkEngineMono.Scenes;
 
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PilkEngineMono.Managers
 {
     public class SceneManager : Game
     {
+        // Static Vars
         public static SpriteBatch SpriteBatch;
         public static GameTime GameTime;
+        // ----------
 
         private GraphicsDeviceManager mGraphics;
         private Scene mCurrentScene;
 
-        public Load mLoad;
         public Updater mUpdater;
         public Renderer mRenderer;
 
-        public delegate void Load();
         public delegate void Updater();
         public delegate void Renderer();
 
-        public SceneManager()
+        public SceneManager(Type pSceneType)
         {
             mGraphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
+            if (!ChangeScene(pSceneType))
+            {
+                Debug.WriteLine("Starting Scene not valid!");
+                Exit();
+            }
         }
 
         protected override void Initialize()
         {
+            if (mCurrentScene != null)
+                mCurrentScene.Initialize();
+
             base.Initialize();
-            mCurrentScene = new MainMenuScene(this);
-            mCurrentScene.Initialize();
         }
 
         protected override void LoadContent()
@@ -47,7 +56,8 @@ namespace PilkEngineMono.Managers
         {
             GameTime = gameTime;
 
-            mUpdater();
+            if (mUpdater != null)
+                mUpdater();
 
             base.Update(gameTime);
         }
@@ -56,30 +66,39 @@ namespace PilkEngineMono.Managers
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            mRenderer();
+            if (mRenderer != null)
+                mRenderer();
 
             base.Draw(gameTime);
         }
 
         protected override void OnExiting(object sender, EventArgs args)
         {
-            mCurrentScene.Close();
+            if (mCurrentScene != null)
+                mCurrentScene.Close();
+
             base.OnExiting(sender, args);
         }
 
-        public void ChangeScene(SceneTypes pSceneType)
+        public bool ChangeScene(Type pSceneType)
         {
-            mCurrentScene.Close();
-            switch (pSceneType)
+            if (pSceneType.BaseType != typeof(Scene))
             {
-                case SceneTypes.MainMenu:
-                    mCurrentScene = new MainMenuScene(this);
-                    break;
-                default:
-                    mCurrentScene = new MainMenuScene(this);
-                    break;
+                Debug.WriteLine("Scene type not valid");
+                return false;
             }
+
+            if (mCurrentScene == null)
+            {
+                mCurrentScene = (Scene)Activator.CreateInstance(pSceneType, this);
+                return true;
+            }
+
+            mCurrentScene.Close();
+            mCurrentScene = (Scene)Activator.CreateInstance(pSceneType, this);
             mCurrentScene.Initialize();
+
+            return true;
         }
     }
 }

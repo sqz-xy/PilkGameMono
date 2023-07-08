@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Net.Mime;
 using PilkEngineMono.Systems;
 
-namespace PilkEngineMono.Scenes
+namespace PilkGameMono.Scenes
 {
     public class MainMenuScene : Scene
     {
