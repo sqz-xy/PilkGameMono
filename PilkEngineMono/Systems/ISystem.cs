@@ -8,6 +8,7 @@ namespace PilkEngineMono.Systems
 {
     public interface ISystem
     {
+        void GetComponents();
         void OnAction();
     }
 }

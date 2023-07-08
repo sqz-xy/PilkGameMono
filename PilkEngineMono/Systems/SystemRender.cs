@@ -14,9 +14,15 @@ namespace PilkEngineMono.Systems
     public class SystemRender : ISystem
     {
         public Dictionary<string, IComponent> mTransforms;
-        public Dictionary<string, IComponent> mSprites;     
+        public Dictionary<string, IComponent> mSprites;
+        
 
         public SystemRender() 
+        {
+            GetComponents();
+        }
+
+        public void GetComponents()
         {
             // References
             mTransforms = ComponentManager.GetComponents(typeof(ComponentTransform));

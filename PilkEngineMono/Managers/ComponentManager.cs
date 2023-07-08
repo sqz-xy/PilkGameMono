@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.Managers
 {
-    public class ComponentManager
+    public static class ComponentManager
     {
         // String = Name of Component for registering
         // Value = Dictionary of the entity its linked to and the component
-        public static Dictionary<Type, Dictionary<string, IComponent>> mComponentRegistry = new Dictionary<Type, Dictionary<string, IComponent>>();
+        private static Dictionary<Type, Dictionary<string, IComponent>> mComponentRegistry = new Dictionary<Type, Dictionary<string, IComponent>>();
 
         public static bool RegisterComponentType(Type pComponentType)
         {
@@ -43,7 +43,7 @@ namespace PilkEngineMono.Managers
 
             if (dict == null)
             {
-                Debug.WriteLine("Component type not registered");
+                Debug.WriteLine("Cannot be added to entity, Component type not registered");
                 return false;
             }
             dict.Add(pEntityName, pComponent);
@@ -58,6 +58,26 @@ namespace PilkEngineMono.Managers
             }
 
             return null;
+        }
+
+        public static bool RemoveComponent(Type pComponentType, string pName) 
+        {
+            if (!HasComponent(pComponentType))
+            {
+                Debug.WriteLine("Cannot be removed, Component Type not registered");
+                return false;
+            }
+      
+
+            if (!mComponentRegistry[pComponentType].ContainsKey(pName))
+            {
+                Debug.WriteLine("Component not registered to Entity");
+                return false;
+            }
+
+            mComponentRegistry[pComponentType].Remove(pName);
+            return true;
+            
         }
 
         public static bool UnregisterComponentType(Type pComponentType)
