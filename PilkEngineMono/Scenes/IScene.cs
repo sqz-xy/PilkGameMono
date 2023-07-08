@@ -27,14 +27,12 @@ public interface IScene
     /// <summary>
     /// Render logic for the scene goes in here
     /// </summary>
-    /// <param name="pFrameEventArgs"></param>
-    void Render(GameTime pGameTime, SpriteBatch pSpriteBatch);
+    void Render();
     
     /// <summary>
     /// Update logic for the scene goes in here
     /// </summary>
-    /// <param name="pFrameEventArgs"></param>
-    void Update(GameTime pGameTime);
+    void Update();
 
     /// <summary>
     /// Change to a different scene

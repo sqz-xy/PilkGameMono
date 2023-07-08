@@ -10,8 +10,10 @@ namespace PilkEngineMono.Managers
 {
     public class SceneManager : Game
     {
+        public static SpriteBatch SpriteBatch;
+        public static GameTime GameTime;
+
         private GraphicsDeviceManager mGraphics;
-        private SpriteBatch mSpriteBatch;
         private Scene mCurrentScene;
 
         public Load mLoad;
@@ -19,8 +21,8 @@ namespace PilkEngineMono.Managers
         public Renderer mRenderer;
 
         public delegate void Load();
-        public delegate void Updater(GameTime pGameTime);
-        public delegate void Renderer(GameTime pGameTime, SpriteBatch pSpriteBatch);
+        public delegate void Updater();
+        public delegate void Renderer();
 
         public SceneManager()
         {
@@ -33,19 +35,19 @@ namespace PilkEngineMono.Managers
         {
             base.Initialize();
             mCurrentScene = new MainMenuScene(this);
+            mCurrentScene.Initialize();
         }
 
         protected override void LoadContent()
         {
-            mSpriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //Exit();
+            GameTime = gameTime;
 
-            mUpdater(gameTime);
+            mUpdater();
 
             base.Update(gameTime);
         }
@@ -54,7 +56,7 @@ namespace PilkEngineMono.Managers
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            mRenderer(gameTime, mSpriteBatch);
+            mRenderer();
 
             base.Draw(gameTime);
         }

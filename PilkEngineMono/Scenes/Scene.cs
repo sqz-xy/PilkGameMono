@@ -17,8 +17,8 @@ public abstract class Scene : IScene
     }
 
     public abstract void Initialize();
-    public abstract void Render(GameTime pGameTime, SpriteBatch pSpriteBatch);
-    public abstract void Update(GameTime pGameTime);
+    public abstract void Render();
+    public abstract void Update();
     public abstract void Close();
     public void ChangeScene(SceneTypes pSceneType)
     {

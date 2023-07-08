@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,7 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.EntityComponent
 {
-
-    /*
-     * public void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
-     */
-
-    public class ComponentTransform : Component
+    public struct ComponentTransform : IComponent
     {
         public Vector2 Position { get; set; }
         public Vector2 Scale { get; set; }
@@ -27,6 +23,18 @@ namespace PilkEngineMono.EntityComponent
             Scale = pScale;
             Rotation = pRotation;
             Layer = pLayer;
+        }
+    }
+
+    public struct ComponentSprite : IComponent
+    {
+        public Texture2D Texture { get; set; }
+        public Color Colour { get; set; }
+
+        public ComponentSprite(Texture2D pTexture, Color pColour)
+        {
+            Texture = pTexture;
+            Colour = pColour;
         }
     }
 }
