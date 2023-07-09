@@ -30,11 +30,15 @@ namespace PilkEngineMono.EntityComponent
     {
         public Texture2D Texture { get; set; }
         public Color Colour { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public ComponentSprite(Texture2D pTexture, Color pColour)
         {
             Texture = pTexture;
             Colour = pColour;
+            Width = pTexture.Width; 
+            Height = pTexture.Height;
         }
     }
 }

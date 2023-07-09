@@ -42,7 +42,7 @@ namespace PilkGameMono.Scenes
             ComponentManager.RegisterComponentType(typeof(ComponentTransform));
             ComponentManager.RegisterComponentType(typeof(ComponentSprite));
 
-            ComponentTransform trans = new ComponentTransform(new Vector2(1.0f, 1.0f), new Vector2(1.0f, 1.0f), 0.0f, 1.0f);
+            ComponentTransform trans = new ComponentTransform(new Vector2(400.0f, 400.0f), new Vector2(0.5f, 0.5f), 0.0f, 1.0f);
             ComponentSprite sprite = new ComponentSprite(tex, Color.White);
 
             ComponentManager.AddComponent(typeof(ComponentTransform), "test", trans);

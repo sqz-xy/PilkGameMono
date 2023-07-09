@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 using PilkEngineMono.EntityComponent;
 using PilkEngineMono.Managers;
@@ -38,9 +39,12 @@ namespace PilkEngineMono.Systems
                     var trans = (ComponentTransform)transform.Value;
                     var sprite = (ComponentSprite)mSprites[transform.Key];
 
-                    // Rewrite this
+                    var originX = (sprite.Width * 0.5f);
+                    var originY = (sprite.Width * 0.5f);
+
+                    // Fix rotation centering
                     SceneManager.SpriteBatch.Begin();
-                    SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, sprite.Colour);
+                    SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, null, sprite.Colour, trans.Rotation, new Vector2(originX + trans.Position.X, originY + trans.Position.Y), trans.Scale, SpriteEffects.None, trans.Layer);
                     SceneManager.SpriteBatch.End();
                 }
             }
