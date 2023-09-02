@@ -1,10 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using PilkEngineMono.Managers;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -39,6 +42,16 @@ namespace PilkEngineMono.EntityComponent
             Colour = pColour;
             Width = pTexture.Width; 
             Height = pTexture.Height;
+        }
+    }
+
+    public struct ComponentModel : IComponent
+    {
+        public Model Model { get; set; }
+
+        public ComponentModel(Model pModel)
+        {
+            Model = pModel;
         }
     }
 }
