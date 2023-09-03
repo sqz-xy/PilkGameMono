@@ -51,7 +51,7 @@ namespace PilkEngineMono.EntityComponent
             SourceRect = pRectangle;
             SpriteCount = pSpriteCount;
             Interval = pInterval;
-            CurrentPanel = 0;
+            CurrentPanel = 1;
             Timer = 0;
         }
     }
