@@ -6,6 +6,7 @@ using PilkEngineMono.Managers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.EntityComponent
 {
-    public struct ComponentTransform : IComponent
+    public class ComponentTransform : IComponent
     {
         public Vector2 Position { get; set; }
         public Vector2 Scale { get; set; }
@@ -29,23 +30,33 @@ namespace PilkEngineMono.EntityComponent
         }
     }
 
-    public struct ComponentSprite : IComponent
+    public class ComponentSprite : IComponent
     {
         public Texture2D Texture { get; set; }
         public Color Colour { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
+        public Rectangle SourceRect { get; set; }
+        public int SpriteCount { get; set; }
+        public float Timer { get; set; }
+        public float Interval { get; set; } 
+        public int CurrentPanel { get; set; }
 
-        public ComponentSprite(Texture2D pTexture, Color pColour)
+        public ComponentSprite(Texture2D pTexture, Color pColour, Rectangle pRectangle, int pSpriteCount, float pInterval)
         {
             Texture = pTexture;
             Colour = pColour;
             Width = pTexture.Width; 
             Height = pTexture.Height;
+            SourceRect = pRectangle;
+            SpriteCount = pSpriteCount;
+            Interval = pInterval;
+            CurrentPanel = 0;
+            Timer = 0;
         }
     }
 
-    public struct ComponentModel : IComponent
+    public class ComponentModel : IComponent
     {
         public Model Model { get; set; }
 

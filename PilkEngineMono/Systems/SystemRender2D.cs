@@ -6,9 +6,12 @@ using PilkEngineMono.Managers;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace PilkEngineMono.Systems
 {
@@ -42,10 +45,26 @@ namespace PilkEngineMono.Systems
                     var originX = (sprite.Width * 0.5f);
                     var originY = (sprite.Width * 0.5f);
 
+                    var panelWidth = sprite.Width / sprite.SpriteCount;
+                    var panelHeight = sprite.Height / sprite.SpriteCount;
+
                     // Fix rotation centering
-                    //SceneManager.SpriteBatch.Begin();
-                    SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, null, sprite.Colour, trans.Rotation, new Vector2(originX + trans.Position.X, originY + trans.Position.Y), trans.Scale, SpriteEffects.None, trans.Layer);
-                    //SceneManager.SpriteBatch.End();
+                    SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, sprite.SourceRect, sprite.Colour, trans.Rotation, new Vector2(originX + trans.Position.X, originY + trans.Position.Y), trans.Scale, SpriteEffects.None, trans.Layer);
+        
+                    if (sprite.Timer > sprite.Interval)
+                    {
+                        if (sprite.CurrentPanel == sprite.SpriteCount)
+                        {
+                            sprite.SourceRect = new Rectangle(0, 0, panelWidth, panelHeight);
+                            sprite.CurrentPanel = 0;
+                        }
+                        else
+                        {
+                            sprite.SourceRect = new Rectangle(0, 0, panelWidth * sprite.CurrentPanel, panelHeight * sprite.CurrentPanel);
+                            sprite.CurrentPanel++;
+                        }
+                    }
+                    sprite.Timer += (float)SceneManager.GameTime.ElapsedGameTime.Milliseconds;
                 }
             }
         }

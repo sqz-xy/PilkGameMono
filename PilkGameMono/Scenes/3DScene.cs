@@ -54,27 +54,17 @@ namespace PilkGameMono.Scenes
             model = mSceneManager.Content.Load<Model>("cube");
 
             // TEX
-                
-            Texture2D tex = mSceneManager.Content.Load<Texture2D>("img8");
-
-            EntityManager.CreateEntity("test");
 
             ComponentManager.RegisterComponentType(typeof(ComponentTransform));
             ComponentManager.RegisterComponentType(typeof(ComponentSprite));
-
-            ComponentTransform trans = new ComponentTransform(new Vector2(400.0f, 400.0f), new Vector2(0.5f, 0.5f), 0.0f, 1.0f);
-            ComponentSprite sprite = new ComponentSprite(tex, Color.White);
-
-            ComponentManager.AddComponent(typeof(ComponentTransform), "test", trans);
-            ComponentManager.AddComponent(typeof(ComponentSprite), "test", sprite);
 
             mSystemRender = new SystemRender2D();
             SystemManager.AddSystem(mSystemRender, SystemType.RENDER);
 
             EntityManager.CreateEntity("randy");
-            Texture2D randy = mSceneManager.Content.Load<Texture2D>("randy");
-            ComponentTransform trans2 = new ComponentTransform(new Vector2(1300.0f, 500.0f), new Vector2(0.5f, 0.5f), 0.0f, 1.0f);
-            ComponentSprite sprite2 = new ComponentSprite(randy, Color.White);
+            Texture2D randy = mSceneManager.Content.Load<Texture2D>("nakedgun0"); // 274 tall, 265 wide
+            ComponentTransform trans2 = new ComponentTransform(new Vector2(1300.0f, 700.0f), new Vector2(0.5f, 0.5f), 0.0f, 1.0f);
+            ComponentSprite sprite2 = new ComponentSprite(randy, Color.White, new Rectangle(0, 0, 247, 265), 3, 250);
             ComponentManager.AddComponent(typeof(ComponentTransform), "randy", trans2);
             ComponentManager.AddComponent(typeof(ComponentSprite), "randy", sprite2);
         }
