@@ -26,12 +26,21 @@ namespace PilkEngineMono.Managers
         public delegate void Updater();
         public delegate void Renderer();
 
+        private int mWindowWidth;
+        private int mWindowHeight;
+
         public SceneManager(Type pSceneType)
         {
             mGraphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            
+
+            mWindowWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            mWindowHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            mGraphics.PreferredBackBufferWidth = mWindowWidth;
+            mGraphics.PreferredBackBufferHeight = mWindowHeight;
+            //mGraphics.ToggleFullScreen();
+
             if (!ChangeScene(pSceneType))
             {
                 Debug.WriteLine("Starting Scene not valid!");
@@ -58,6 +67,13 @@ namespace PilkEngineMono.Managers
 
             if (mUpdater != null)
                 mUpdater();
+
+            KeyboardState ks = Keyboard.GetState();
+
+            if(ks.IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
 
             base.Update(gameTime);
         }
