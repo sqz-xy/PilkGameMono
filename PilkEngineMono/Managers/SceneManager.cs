@@ -66,10 +66,14 @@ namespace PilkEngineMono.Managers
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            SpriteBatch.Begin();
+
             if (mRenderer != null)
                 mRenderer();
 
             base.Draw(gameTime);
+
+            SpriteBatch.End();
         }
 
         protected override void OnExiting(object sender, EventArgs args)

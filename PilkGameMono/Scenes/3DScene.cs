@@ -54,7 +54,7 @@ namespace PilkGameMono.Scenes
             model = mSceneManager.Content.Load<Model>("cube");
 
             // TEX
-
+                
             Texture2D tex = mSceneManager.Content.Load<Texture2D>("img8");
 
             EntityManager.CreateEntity("test");
@@ -70,7 +70,13 @@ namespace PilkGameMono.Scenes
 
             mSystemRender = new SystemRender2D();
             SystemManager.AddSystem(mSystemRender, SystemType.RENDER);
-            
+
+            EntityManager.CreateEntity("randy");
+            Texture2D randy = mSceneManager.Content.Load<Texture2D>("randy");
+            ComponentTransform trans2 = new ComponentTransform(new Vector2(1300.0f, 500.0f), new Vector2(0.5f, 0.5f), 0.0f, 1.0f);
+            ComponentSprite sprite2 = new ComponentSprite(randy, Color.White);
+            ComponentManager.AddComponent(typeof(ComponentTransform), "randy", trans2);
+            ComponentManager.AddComponent(typeof(ComponentSprite), "randy", sprite2);
         }
 
         public override void Render()

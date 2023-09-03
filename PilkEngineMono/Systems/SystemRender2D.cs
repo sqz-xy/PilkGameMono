@@ -43,9 +43,9 @@ namespace PilkEngineMono.Systems
                     var originY = (sprite.Width * 0.5f);
 
                     // Fix rotation centering
-                    SceneManager.SpriteBatch.Begin();
+                    //SceneManager.SpriteBatch.Begin();
                     SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, null, sprite.Colour, trans.Rotation, new Vector2(originX + trans.Position.X, originY + trans.Position.Y), trans.Scale, SpriteEffects.None, trans.Layer);
-                    SceneManager.SpriteBatch.End();
+                    //SceneManager.SpriteBatch.End();
                 }
             }
         }
