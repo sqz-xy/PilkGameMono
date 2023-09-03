@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace PilkEngineMono.Systems
 {
-    public class SystemRender : ISystem
+    public class SystemRender2D : ISystem
     {
         public Dictionary<string, IComponent> mTransforms;
         public Dictionary<string, IComponent> mSprites;
         
 
-        public SystemRender() 
+        public SystemRender2D() 
         {
             GetComponents();
         }

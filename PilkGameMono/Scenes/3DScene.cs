@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using PilkEngineMono.EntityComponent;
 using PilkEngineMono.Managers;
 using PilkEngineMono.Scenes;
+using PilkEngineMono.Systems;
 
 using System;
 using System.Collections.Generic;
@@ -12,12 +14,15 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 using Vector3 = Microsoft.Xna.Framework.Vector3;
 
 namespace PilkGameMono.Scenes
 {
     public class _3DScene : Scene
     {
+        ISystem mSystemRender;
+
         Vector3 camTarget;
         Vector3 camPos;
         Matrix projMat;
@@ -47,6 +52,25 @@ namespace PilkGameMono.Scenes
             worldMat = Matrix.CreateTranslation(new Vector3(0, 0, 0));
 
             model = mSceneManager.Content.Load<Model>("cube");
+
+            // TEX
+
+            Texture2D tex = mSceneManager.Content.Load<Texture2D>("img8");
+
+            bool test = EntityManager.CreateEntity("test");
+
+            ComponentManager.RegisterComponentType(typeof(ComponentTransform));
+            ComponentManager.RegisterComponentType(typeof(ComponentSprite));
+
+            ComponentTransform trans = new ComponentTransform(new Vector2(400.0f, 400.0f), new Vector2(0.5f, 0.5f), 0.0f, 1.0f);
+            ComponentSprite sprite = new ComponentSprite(tex, Color.White);
+
+            ComponentManager.AddComponent(typeof(ComponentTransform), "test", trans);
+            ComponentManager.AddComponent(typeof(ComponentSprite), "test", sprite);
+
+            mSystemRender = new SystemRender2D();
+
+            bool has = ComponentManager.HasComponent(typeof(ComponentTransform));
         }
 
         public override void Render()
@@ -61,6 +85,8 @@ namespace PilkGameMono.Scenes
                 }
                 mesh.Draw();
             }
+
+            mSystemRender.OnAction();
         }
 
         public override void Update()

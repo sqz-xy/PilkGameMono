@@ -19,7 +19,6 @@ namespace PilkGameMono.Scenes
 {
     public class MainMenuScene : Scene
     {
-
         ISystem mSystemRender;
 
         public MainMenuScene(SceneManager pSceneManager) : base(pSceneManager) 
@@ -37,7 +36,6 @@ namespace PilkGameMono.Scenes
             Texture2D tex = mSceneManager.Content.Load<Texture2D>("img8");
 
             bool test = EntityManager.CreateEntity("test");
-            bool test2 = EntityManager.CreateEntity("test2");
 
             ComponentManager.RegisterComponentType(typeof(ComponentTransform));
             ComponentManager.RegisterComponentType(typeof(ComponentSprite));
@@ -48,23 +46,23 @@ namespace PilkGameMono.Scenes
             ComponentManager.AddComponent(typeof(ComponentTransform), "test", trans);
             ComponentManager.AddComponent(typeof(ComponentSprite), "test", sprite);
 
-            mSystemRender = new SystemRender();
-
-            bool has = ComponentManager.HasComponent(typeof(ComponentTransform));
-
-            ComponentManager.AddComponent(typeof(ComponentTransform), "test2", trans);
+            mSystemRender = new SystemRender2D();
+            SystemManager.AddSystem(mSystemRender, SystemType.RENDER);
 
             Debug.WriteLine("Initialize");
         }
 
         public override void Render()
         {
-            mSystemRender.OnAction();
+            SystemManager.ActionRenderSystems();
+
             Debug.WriteLine("Render");
         }
 
         public override void Update()
         {
+            SystemManager.ActionUpdateSystems();
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 ComponentManager.RemoveComponent(typeof(ComponentTransform), "test2");
 
