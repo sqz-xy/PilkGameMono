@@ -57,7 +57,7 @@ namespace PilkGameMono.Scenes
 
             Texture2D tex = mSceneManager.Content.Load<Texture2D>("img8");
 
-            bool test = EntityManager.CreateEntity("test");
+            EntityManager.CreateEntity("test");
 
             ComponentManager.RegisterComponentType(typeof(ComponentTransform));
             ComponentManager.RegisterComponentType(typeof(ComponentSprite));
@@ -69,8 +69,8 @@ namespace PilkGameMono.Scenes
             ComponentManager.AddComponent(typeof(ComponentSprite), "test", sprite);
 
             mSystemRender = new SystemRender2D();
-
-            bool has = ComponentManager.HasComponent(typeof(ComponentTransform));
+            SystemManager.AddSystem(mSystemRender, SystemType.RENDER);
+            
         }
 
         public override void Render()

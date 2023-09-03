@@ -17,8 +17,8 @@ namespace PilkEngineMono.Managers
 
     public static class SystemManager
     {
-        private static List<ISystem> mRenderSystems;
-        private static List<ISystem> mUpdateSystems;
+        private static List<ISystem> mRenderSystems = new List<ISystem>();
+        private static List<ISystem> mUpdateSystems = new List<ISystem>();
 
         public static bool AddSystem(ISystem pSystem, SystemType pSystemType)
         {
@@ -91,6 +91,22 @@ namespace PilkEngineMono.Managers
             {
                 pSystem.OnAction();
             }
+        }
+
+        public static void ClearSystems()
+        {
+            ClearRenderSystems();
+            ClearUpdateSystems();
+        }
+
+        public static void ClearRenderSystems()
+        {
+            mRenderSystems.Clear();
+        }
+
+        public static void ClearUpdateSystems()
+        {
+            mUpdateSystems.Clear();
         }
     }
 }
