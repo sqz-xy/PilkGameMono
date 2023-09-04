@@ -19,7 +19,7 @@ namespace PilkEngineMono.Systems
     {
         public Dictionary<string, IComponent> mTransforms;
         public Dictionary<string, IComponent> mSprites;
-        
+        float rot = 0.0f;
 
         public SystemRender2D() 
         {
@@ -42,13 +42,13 @@ namespace PilkEngineMono.Systems
                     var trans = (ComponentTransform)transform.Value;
                     var sprite = (ComponentSprite)mSprites[transform.Key];
 
-                    var originX = (sprite.Width * 0.5f);
-                    var originY = (sprite.Width * 0.5f);
+                    var originX = (sprite.Height * 0.5f); // the width of a frame
+                    var originY = (sprite.Height * 0.5f);
 
                     var panelWidth = sprite.Width / sprite.SpriteCount;
 
                     // Fix rotation centering
-                    SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, sprite.SourceRect, sprite.Colour, trans.Rotation, new Vector2(originX + trans.Position.X, originY + trans.Position.Y), trans.Scale, SpriteEffects.None, trans.Layer);
+                    SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, sprite.SourceRect, sprite.Colour, trans.Rotation, new Vector2(originX, originY), trans.Scale, SpriteEffects.None, 1);
 
                     if (sprite.Timer > sprite.Interval)
                     {
