@@ -49,19 +49,20 @@ namespace PilkEngineMono.Systems
 
                     // Fix rotation centering
                     SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, sprite.SourceRect, sprite.Colour, trans.Rotation, new Vector2(originX + trans.Position.X, originY + trans.Position.Y), trans.Scale, SpriteEffects.None, trans.Layer);
-                  
+
                     if (sprite.Timer > sprite.Interval)
                     {
                         if (sprite.CurrentPanel == sprite.SpriteCount)
                         {
                             sprite.SourceRect = new Rectangle(0, 0, panelWidth, sprite.Height);
-                            sprite.CurrentPanel = 0;
+                            sprite.CurrentPanel = 1;
                         }
                         else
                         {
-                            sprite.SourceRect = new Rectangle(0, 0, panelWidth * sprite.CurrentPanel, sprite.Height);
+                            sprite.SourceRect = new Rectangle(panelWidth * sprite.CurrentPanel, 0, panelWidth, sprite.Height);
                             sprite.CurrentPanel++;
                         }
+                        sprite.Timer = 0;
                     }
                     sprite.Timer += (float)SceneManager.GameTime.ElapsedGameTime.Milliseconds;
                 }
