@@ -50,7 +50,8 @@ namespace PilkEngineMono.Systems
                     // Fix rotation centering
                     SceneManager.SpriteBatch.Draw(sprite.Texture, trans.Position, sprite.SourceRect, sprite.Colour, trans.Rotation, new Vector2(originX, originY), trans.Scale, SpriteEffects.None, 1);
 
-                    if (sprite.Timer > sprite.Interval)
+                    // Sprite Sheets
+                    if (sprite.Timer > sprite.Interval && sprite.SpriteCount > 1)
                     {
                         if (sprite.CurrentPanel == sprite.SpriteCount)
                         {

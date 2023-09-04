@@ -56,6 +56,11 @@ namespace PilkEngineMono.EntityComponent
         }
     }
 
+    public class ComponentCamera : IComponent 
+    { 
+    
+    }
+
     public class ComponentModel : IComponent
     {
         public Model Model { get; set; }
