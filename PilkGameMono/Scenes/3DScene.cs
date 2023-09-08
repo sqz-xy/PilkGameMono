@@ -63,7 +63,7 @@ namespace PilkGameMono.Scenes
 
             EntityManager.CreateEntity("randy");
             Texture2D randy = mSceneManager.Content.Load<Texture2D>("nakedgun0"); // 274 tall, 265 wide
-            ComponentTransform trans2 = new ComponentTransform(new Vector2(1300.0f, 700.0f), new Vector2(1.0f, 1.0f), 0.0f, 1.0f);
+            ComponentTransform trans2 = new ComponentTransform(new Vector2(1800.0f, 750.0f), new Vector2(2.0f, 2.0f), 0.0f, 1.0f);
             ComponentSprite sprite2 = new ComponentSprite(randy, Color.White, new Rectangle(0, 0, 256, 273), 4, 50);
             ComponentManager.AddComponent(typeof(ComponentTransform), "randy", trans2);
             ComponentManager.AddComponent(typeof(ComponentSprite), "randy", sprite2);

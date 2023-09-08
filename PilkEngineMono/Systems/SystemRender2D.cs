@@ -42,7 +42,7 @@ namespace PilkEngineMono.Systems
                     var trans = (ComponentTransform)transform.Value;
                     var sprite = (ComponentSprite)mSprites[transform.Key];
 
-                    var originX = (sprite.Height * 0.5f); // the width of a frame
+                    var originX = (sprite.Width / sprite.SpriteCount); // the width of a frame
                     var originY = (sprite.Height * 0.5f);
 
                     var panelWidth = sprite.Width / sprite.SpriteCount;
